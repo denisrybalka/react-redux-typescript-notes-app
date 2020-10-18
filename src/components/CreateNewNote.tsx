@@ -2,7 +2,7 @@ import React from "react";
 
 const CreateNewNote: React.FC = () => {
   return (
-    <form>
+    <form className="card m-5 p-5 d-flex flex-column align-items-center">
       <div className="w-50">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
@@ -15,15 +15,23 @@ const CreateNewNote: React.FC = () => {
             className="form-control"
             placeholder="Note's title"
             aria-label="Title"
-            aria-describedby="basic-addon1"
           />
         </div>
         <div className="form-group">
-          <textarea className="form-control" id="noteTextarea" rows={3} placeholder="Your text here"/>
+          <textarea
+            className="form-control"
+            id="noteTextarea"
+            rows={3}
+            placeholder="Your text here"
+          />
         </div>
       </div>
-      <button className="btn btn-primary" type="submit">Submit note</button>
-      <button className="btn btn-light ml-2">Cancel</button>
+      <div className="w-50">
+        <button className="btn btn-primary" type="submit">
+          Submit note
+        </button>
+        <button className="btn btn-light ml-2">Cancel</button>
+      </div>
     </form>
   );
 };

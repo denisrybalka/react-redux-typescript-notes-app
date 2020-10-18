@@ -1,6 +1,12 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { AppState } from "../redux/reducers/reducer";
+import { setNewTitle, setNewNoteText } from "./../redux/actions/actions";
 
 const CreateNewNote: React.FC = () => {
+  const { title, noteText } = useSelector((state: AppState) => state);
+  const dispatch = useDispatch();
+
   return (
     <form className="card m-5 p-5 d-flex flex-column align-items-center">
       <div className="w-50">
@@ -14,7 +20,8 @@ const CreateNewNote: React.FC = () => {
             type="text"
             className="form-control"
             placeholder="Note's title"
-            aria-label="Title"
+            value={title}
+            onChange={(e) => dispatch(setNewTitle(e.target.value))}
           />
         </div>
         <div className="form-group">
@@ -22,13 +29,15 @@ const CreateNewNote: React.FC = () => {
             className="form-control"
             id="noteTextarea"
             rows={3}
+            value={noteText}
+            onChange={(e) => dispatch(setNewNoteText(e.target.value))}
             placeholder="Your text here"
           />
         </div>
       </div>
       <div className="w-50">
         <button className="btn btn-primary" type="submit">
-          Submit note
+          Submit
         </button>
         <button className="btn btn-light ml-2">Cancel</button>
       </div>

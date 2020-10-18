@@ -3,7 +3,9 @@ import Note from './Note';
 
 const NotesList: React.FC = () => {
   return (
-    <div className="list-group">
+    <div className="list-group align-items-center">
+      <Note/>
+      <Note/>
       <Note/>
     </div>
   );

@@ -2,7 +2,8 @@ import React from "react";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="navbar navbar-light bg-light align-center mb-2">
+    <nav className="navbar navbar-light bg-light mb-2">
+      <h3 className="text-muted">Notes App</h3>
       <form className="form-inline">
         <input
           className="form-control mr-sm-2"
@@ -14,6 +15,7 @@ const Navbar: React.FC = () => {
           Search
         </button>
       </form>
+      <button className="btn btn-success">Add new note</button>
     </nav>
   );
 };

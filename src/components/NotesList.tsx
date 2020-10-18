@@ -1,12 +1,16 @@
 import React from "react";
-import Note from './Note';
+import { useSelector } from "react-redux";
+import Note from "./Note";
+import { AppState } from "../redux/reducers/reducer";
 
 const NotesList: React.FC = () => {
+  const notesList = useSelector((state: AppState) => state.notesList);
+
   return (
     <div className="list-group align-items-center">
-      <Note/>
-      <Note/>
-      <Note/>
+      {notesList.map((note) => (
+        <Note key={note.id} noteText={note.noteText} title={note.title} date={note.id}/>
+      ))}
     </div>
   );
 };

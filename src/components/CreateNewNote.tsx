@@ -1,14 +1,19 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "../redux/reducers/reducer";
-import { setNewTitle, setNewNoteText } from "./../redux/actions/actions";
+import { setNewTitle, setNewNoteText, addNewNote } from "./../redux/actions/actions";
 
 const CreateNewNote: React.FC = () => {
   const { title, noteText } = useSelector((state: AppState) => state);
   const dispatch = useDispatch();
 
+  const handleSubmitForm = (event:React.FormEvent<HTMLFormElement>):void => {
+    event.preventDefault();
+    dispatch(addNewNote());
+  }
+
   return (
-    <form className="card m-5 p-5 d-flex flex-column align-items-center">
+    <form className="card m-5 p-5 d-flex flex-column align-items-center" onSubmit={(event) => handleSubmitForm(event)}>
       <div className="w-50">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
@@ -22,6 +27,8 @@ const CreateNewNote: React.FC = () => {
             placeholder="Note's title"
             value={title}
             onChange={(e) => dispatch(setNewTitle(e.target.value))}
+            required
+            minLength={3}
           />
         </div>
         <div className="form-group">
@@ -32,6 +39,7 @@ const CreateNewNote: React.FC = () => {
             value={noteText}
             onChange={(e) => dispatch(setNewNoteText(e.target.value))}
             placeholder="Your text here"
+            required
           />
         </div>
       </div>
@@ -39,7 +47,7 @@ const CreateNewNote: React.FC = () => {
         <button className="btn btn-primary" type="submit">
           Submit
         </button>
-        <button className="btn btn-light ml-2">Cancel</button>
+        <button className="btn btn-light ml-2" type="reset">Cancel</button>
       </div>
     </form>
   );

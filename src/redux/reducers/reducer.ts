@@ -1,5 +1,6 @@
 import {
   Action,
+  ADD_NEW_NOTE,
   SET_NEW_NOTE_TEXT,
   SET_NEW_NOTE_TITLE,
 } from "../actions/actions";
@@ -30,6 +31,18 @@ export const reducer = (
       return {
         ...state,
         noteText: action.payload,
+      };
+    case ADD_NEW_NOTE:
+      const { title, noteText } = state;
+      const newNote = {
+        title,
+        noteText,
+        id: new Date(),
+      };
+      return {
+        notesList: [...state.notesList, newNote],
+        title: '',
+        noteText: ''
       };
     default:
       return state;

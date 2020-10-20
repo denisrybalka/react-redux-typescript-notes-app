@@ -2,6 +2,7 @@ export const SET_NEW_NOTE_TITLE: string = "SET_NEW_NOTE_TITLE";
 export const SET_NEW_NOTE_TEXT: string = "SET_NEW_NOTE_TEXT";
 export const ADD_NEW_NOTE: string = "ADD_NEW_NOTE";
 export const SET_NOTE_PREVIEW_ID = "SET_NOTE_PREVIEW_ID";
+export const FETCH_NOTES = "FETCH_NOTES";
 
 export type Action = {
   type: string;
@@ -28,9 +29,16 @@ export function addNewNote(): Action {
   };
 }
 
-export function setNotePreviewId(id:number): Action {
+export function setNotePreviewId(id: number): Action {
   return {
     type: SET_NOTE_PREVIEW_ID,
     payload: id,
-  }
+  };
+}
+
+export function fetchNotes(notes: any): Action {
+  return {
+    type: FETCH_NOTES,
+    payload: notes,
+  };
 }

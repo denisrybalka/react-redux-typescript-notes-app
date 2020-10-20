@@ -1,10 +1,10 @@
-import newId from './../../utils/uniqueId';
 import {
   Action,
   ADD_NEW_NOTE,
   SET_NEW_NOTE_TEXT,
   SET_NEW_NOTE_TITLE,
   SET_NOTE_PREVIEW_ID,
+  FETCH_NOTES,
 } from "../actions/actions";
 
 export type AppState = {
@@ -15,12 +15,7 @@ export type AppState = {
 };
 
 const initialState: AppState = {
-  notesList: [{
-    title: 'Name',
-    noteText: 'Bla bla dfsfsdjifsd fsdihfisdhfwe lorem ipsum',
-    id: newId(),
-    date: new Date(),
-  }], // some mock info to preview
+  notesList: [],
   title: "",
   noteText: "",
   notePreviewId: null,
@@ -46,20 +41,25 @@ export const reducer = (
       const newNote = {
         title,
         noteText,
-        id: newId(),
+        id: Date.now(),
         date: new Date(),
       };
       return {
         ...state,
         notesList: [...state.notesList, newNote],
-        title: '',
-        noteText: ''
+        title: "",
+        noteText: "",
       };
     case SET_NOTE_PREVIEW_ID:
       return {
         ...state,
         notePreviewId: action.payload,
-      }
+      };
+    case FETCH_NOTES:
+      return {
+        ...state,
+        notesList: action.payload,
+      };
     default:
       return state;
   }

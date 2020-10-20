@@ -1,6 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { AppState } from "../redux/reducers/reducer";
+import { Link } from 'react-router-dom';
+import { deleteNote } from './../redux/actions/actions';
 
 const NotePreview: React.FC = () => {
 
@@ -8,6 +10,8 @@ const NotePreview: React.FC = () => {
     (state: AppState) =>
       state.notesList.filter(({ id }) => id === state.notePreviewId)[0]
   );
+
+  const dispatch = useDispatch();
 
   if (!notePreview) {
     return (
@@ -25,9 +29,9 @@ const NotePreview: React.FC = () => {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{noteText}</p>
-          <a href="/" className="card-link">
+          <Link to="/" className="card-link" onClick={() => dispatch(deleteNote(notePreview.id))}>
             Delete note
-          </a>
+          </Link>
           <a href="/" className="card-link">
             Archieve note
           </a>

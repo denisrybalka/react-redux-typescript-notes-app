@@ -5,6 +5,7 @@ import {
   SET_NEW_NOTE_TITLE,
   SET_NOTE_PREVIEW_ID,
   FETCH_NOTES,
+  DELETE_NOTE,
 } from "../actions/actions";
 
 export type AppState = {
@@ -59,6 +60,12 @@ export const reducer = (
       return {
         ...state,
         notesList: action.payload,
+      };
+    case DELETE_NOTE:
+      return {
+        ...state,
+        notePreviewId: null,
+        notesList: state.notesList.filter(({id}) => id !== action.payload)
       };
     default:
       return state;

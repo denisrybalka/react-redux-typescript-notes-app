@@ -3,6 +3,7 @@ export const SET_NEW_NOTE_TEXT: string = "SET_NEW_NOTE_TEXT";
 export const ADD_NEW_NOTE: string = "ADD_NEW_NOTE";
 export const SET_NOTE_PREVIEW_ID = "SET_NOTE_PREVIEW_ID";
 export const FETCH_NOTES = "FETCH_NOTES";
+export const DELETE_NOTE = "DELETE_NOTE";
 
 export type Action = {
   type: string;
@@ -41,4 +42,11 @@ export function fetchNotes(notes: any): Action {
     type: FETCH_NOTES,
     payload: notes,
   };
+}
+
+export function deleteNote(id: number):Action {
+  return {
+    type: DELETE_NOTE,
+    payload: id
+  }
 }

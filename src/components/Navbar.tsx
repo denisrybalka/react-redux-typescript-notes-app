@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
@@ -15,7 +16,9 @@ const Navbar: React.FC = () => {
           Search
         </button>
       </form>
-      <button className="btn btn-success">Add new note</button>
+      <Link to="/create-note" className="btn btn-success">
+        Add new note
+      </Link>
     </nav>
   );
 };

@@ -15,3 +15,7 @@ body {
 .fz-36 {
   font-size: 36px;
 }
+
+.list-group-item {
+  cursor:pointer;
+}

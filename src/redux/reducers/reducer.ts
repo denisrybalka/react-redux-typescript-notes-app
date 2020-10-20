@@ -46,7 +46,7 @@ export const reducer = (
       };
       return {
         ...state,
-        notesList: [...state.notesList, newNote],
+        notesList: [newNote, ...state.notesList],
         title: "",
         noteText: "",
       };

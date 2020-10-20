@@ -6,3 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+.fz-48 {
+  font-size: 48px;
+}
+
+.fz-36 {
+  font-size: 36px;
+}

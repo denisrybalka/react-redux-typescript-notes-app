@@ -7,9 +7,15 @@ const NotesList: React.FC = () => {
   const notesList = useSelector((state: AppState) => state.notesList);
 
   return (
-    <div className="list-group align-items-center">
+    <div className="col-5">
       {notesList.map((note) => (
-        <Note key={note.id} noteText={note.noteText} title={note.title} date={note.id}/>
+        <Note
+          key={note.id}
+          id={note.id}
+          date={note.date}
+          noteText={note.noteText}
+          title={note.title}
+        />
       ))}
     </div>
   );

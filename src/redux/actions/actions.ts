@@ -1,6 +1,7 @@
 export const SET_NEW_NOTE_TITLE: string = "SET_NEW_NOTE_TITLE";
 export const SET_NEW_NOTE_TEXT: string = "SET_NEW_NOTE_TEXT";
 export const ADD_NEW_NOTE: string = "ADD_NEW_NOTE";
+export const SET_NOTE_PREVIEW_ID = "SET_NOTE_PREVIEW_ID";
 
 export type Action = {
   type: string;
@@ -25,4 +26,11 @@ export function addNewNote(): Action {
   return {
     type: ADD_NEW_NOTE,
   };
+}
+
+export function setNotePreviewId(id:number): Action {
+  return {
+    type: SET_NOTE_PREVIEW_ID,
+    payload: id,
+  }
 }

@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { AppState } from "../redux/reducers/reducer";
 import { Link } from 'react-router-dom';
-import { deleteNote } from './../redux/actions/actions';
+import { deleteNote } from './../redux/actions/handleNoteList';
 
 const NotePreview: React.FC = () => {
 

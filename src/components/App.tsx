@@ -7,8 +7,7 @@ import NotePreview from "./NotePreview";
 import NotesList from "./NotesList";
 
 import { useSelector, useDispatch } from "react-redux";
-import { AppState } from "../redux/reducers/reducer";
-import { fetchNotes } from "./../redux/actions/actions";
+import { fetchNotes } from "../redux/actions/handleNoteList";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();

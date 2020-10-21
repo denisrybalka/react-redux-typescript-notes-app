@@ -1,15 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setNotePreviewId } from "./../redux/actions/actions";
-import { AppState } from "../redux/reducers/reducer";
-
-interface INote {
-  noteText: string;
-  title: string;
-  id: number;
-  date: Date;
-}
+import { setNotePreviewId } from "../redux/actions/handleNoteFields";
 
 const Note: React.FC<INote> = ({ noteText, title, date, id }) => {
   const data = new Date(date);

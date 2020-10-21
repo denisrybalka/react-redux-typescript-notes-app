@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import Note from "./Note";
-import { AppState } from "../redux/reducers/reducer";
 
 const NotesList: React.FC = () => {
   const notesList = useSelector((state: AppState) => state.notesList);

@@ -1,26 +1,39 @@
 import {
-  Action,
   ADD_NEW_NOTE,
-  SET_NEW_NOTE_TEXT,
+  DELETE_NOTE,
+  FETCH_NOTES,
+} from "../actions/handleNoteList/types";
+
+import {
   SET_NEW_NOTE_TITLE,
   SET_NOTE_PREVIEW_ID,
-  FETCH_NOTES,
-  DELETE_NOTE,
-} from "../actions/actions";
-
-export type AppState = {
-  notesList: Array<any>;
-  title: string;
-  noteText: string;
-  notePreviewId: null | number;
-};
+  SET_NEW_NOTE_TEXT,
+} from "../actions/handleNoteFields/types";
 
 const initialState: AppState = {
   notesList: [],
-  title: "",
-  noteText: "",
+  noteFields: {
+    title: "",
+    noteText: "",
+  },
   notePreviewId: null,
 };
+
+function updateNoteFields(
+  state: AppState,
+  payload: Action["payload"],
+  fieldName: string
+) {
+  return {
+    ...state,
+    noteFields: {
+      ...state.noteFields,
+      [fieldName]: payload,
+    },
+  };
+}
+
+const resetNoteFields = () => ({ title: "", noteText: "" });
 
 export const reducer = (
   state: AppState = initialState,
@@ -28,18 +41,12 @@ export const reducer = (
 ): AppState => {
   switch (action.type) {
     case SET_NEW_NOTE_TITLE:
-      return {
-        ...state,
-        title: action.payload,
-      };
+      return updateNoteFields(state, action.payload, "title");
     case SET_NEW_NOTE_TEXT:
-      return {
-        ...state,
-        noteText: action.payload,
-      };
+      return updateNoteFields(state, action.payload, "noteText");
     case ADD_NEW_NOTE:
-      const { title, noteText } = state;
-      const newNote = {
+      const { title, noteText } = action.payload;
+      const newNote: Note = {
         title,
         noteText,
         id: Date.now(),
@@ -48,8 +55,7 @@ export const reducer = (
       return {
         ...state,
         notesList: [newNote, ...state.notesList],
-        title: "",
-        noteText: "",
+        noteFields: resetNoteFields(),
       };
     case SET_NOTE_PREVIEW_ID:
       return {
@@ -65,7 +71,7 @@ export const reducer = (
       return {
         ...state,
         notePreviewId: null,
-        notesList: state.notesList.filter(({id}) => id !== action.payload)
+        notesList: state.notesList.filter(({ id }) => id !== action.payload),
       };
     default:
       return state;

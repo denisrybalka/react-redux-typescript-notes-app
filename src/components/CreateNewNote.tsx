@@ -1,28 +1,30 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { AppState } from "../redux/reducers/reducer";
+
+import { addNewNote } from "../redux/actions/handleNoteList";
 import {
   setNewTitle,
   setNewNoteText,
-  addNewNote,
-} from "./../redux/actions/actions";
+} from "./../redux/actions/handleNoteFields";
 
 const CreateNewNote: React.FC = () => {
-  const { title, noteText } = useSelector((state: AppState) => state);
+  const { title, noteText } = useSelector(
+    (state: AppState) => state.noteFields
+  );
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    dispatch(addNewNote());
+    dispatch(addNewNote({ title, noteText }));
     history.push("/");
   };
 
   return (
     <form
       className="card m-5 p-5 d-flex flex-column align-items-center"
-      onSubmit={(event) => handleSubmitForm(event)}
+      onSubmit={(event) => handleFormSubmit(event)}
     >
       <div className="w-50">
         <div className="input-group mb-3">

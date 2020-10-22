@@ -19,11 +19,11 @@ const Note: React.FC<INote> = ({ noteText, title, date, id }) => {
   };
 
   const configuratedDate = data
-    .toLocaleDateString("en-US", dateOptions)
+    .toLocaleDateString("ru", dateOptions)
     .split(",");
 
-  const month = configuratedDate[3];
-  const time = configuratedDate[1];
+  const time = configuratedDate[2];
+  const month = configuratedDate[1];
 
   const handleNoteClick = () => {
     history.push(`${id}`);
@@ -43,10 +43,10 @@ const Note: React.FC<INote> = ({ noteText, title, date, id }) => {
     <div className={noteStyles} onClick={handleNoteClick}>
       <div className="d-flex justify-content-between">
         <h5 className="mb-1">{title}</h5>
-        <small>{month}</small>
+        <small>{time}</small>
       </div>
       <p className="mb-1">{slicedNoteText}</p>
-      <small>{time}</small>
+      <small>{month}</small>
     </div>
   );
 };

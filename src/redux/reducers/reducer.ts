@@ -10,6 +10,8 @@ import {
   SET_NEW_NOTE_TEXT,
 } from "../actions/handleNoteFields/types";
 
+import { SET_SEARCH_TEXT } from "../actions/handleSearch/types";
+
 const initialState: AppState = {
   notesList: [],
   noteFields: {
@@ -17,6 +19,7 @@ const initialState: AppState = {
     noteText: "",
   },
   notePreviewId: null,
+  searchText: "",
 };
 
 function updateNoteFields(
@@ -72,6 +75,11 @@ export const reducer = (
         ...state,
         notePreviewId: null,
         notesList: state.notesList.filter(({ id }) => id !== action.payload),
+      };
+    case SET_SEARCH_TEXT:
+      return {
+        ...state,
+        searchText: action.payload,
       };
     default:
       return state;

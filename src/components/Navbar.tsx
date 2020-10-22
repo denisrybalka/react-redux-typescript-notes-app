@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchText } from './../redux/actions/handleSearch/index';
 
 const Navbar: React.FC = () => {
+  const searchText = useSelector((state:AppState) => state.searchText);
+  const dispatch = useDispatch();
   return (
     <nav className="navbar navbar-light bg-light mb-2">
       <h3 className="text-muted">Notes App</h3>
@@ -11,10 +15,9 @@ const Navbar: React.FC = () => {
           type="search"
           placeholder="Search"
           aria-label="Search"
+          value={searchText}
+          onChange={(e) => dispatch(setSearchText(e.target.value))}
         />
-        <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">
-          Search
-        </button>
       </form>
       <Link to="/create-note" className="btn btn-success">
         Add new note

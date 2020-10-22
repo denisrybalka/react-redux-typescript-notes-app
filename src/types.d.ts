@@ -1,11 +1,12 @@
 type AppState = {
   notesList: Array<any>;
   noteFields: {
-    title: string,
-    noteText: string,
-  },
+    title: string;
+    noteText: string;
+  };
   notePreviewId: null | number;
-}
+  searchText: string;
+};
 
 type Note = {
   title: string;

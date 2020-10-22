@@ -1,16 +1,20 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
-import { deleteNote } from './../redux/actions/handleNoteList';
+import { Link } from "react-router-dom";
+import { deleteNote } from "./../redux/actions/handleNoteList";
 
 const NotePreview: React.FC = () => {
-
-  const notePreview = useSelector(
-    (state: AppState) =>
-      state.notesList.filter(({ id }) => id === state.notePreviewId)[0]
-  );
-
+  const { notesList, notePreviewId } = useSelector((state: AppState) => state);
+  const notePreview = notesList.filter(({ id }) => id === notePreviewId)[0];
   const dispatch = useDispatch();
+
+  if (notesList.length === 0) {
+    return (
+      <div>
+        <p className="text-muted mt-5">You have no notes yet!</p>
+      </div>
+    )
+  }
 
   if (!notePreview) {
     return (
@@ -28,12 +32,13 @@ const NotePreview: React.FC = () => {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{noteText}</p>
-          <Link to="/" className="card-link" onClick={() => dispatch(deleteNote(notePreview.id))}>
+          <Link
+            to="/"
+            className="card-link"
+            onClick={() => dispatch(deleteNote(notePreview.id))}
+          >
             Delete note
           </Link>
-          <a href="/" className="card-link">
-            Archieve note
-          </a>
         </div>
       </div>
     </div>

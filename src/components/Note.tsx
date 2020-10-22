@@ -9,6 +9,11 @@ const Note: React.FC<INote> = ({ noteText, title, date, id }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const handleNoteClick = () => {
+    history.push(`${id}`);
+    dispatch(setNotePreviewId(id));
+  };
+
   const dateOptions = {
     weekday: "short",
     year: "numeric",
@@ -24,11 +29,6 @@ const Note: React.FC<INote> = ({ noteText, title, date, id }) => {
 
   const time = configuratedDate[2];
   const month = configuratedDate[1];
-
-  const handleNoteClick = () => {
-    history.push(`${id}`);
-    dispatch(setNotePreviewId(id));
-  };
 
   const slicedNoteText =
     noteText.length > 40 ? noteText.slice(0, 40).concat("...") : noteText;

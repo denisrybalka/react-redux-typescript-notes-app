@@ -79,6 +79,7 @@ export const reducer = (
     case SET_SEARCH_TEXT:
       return {
         ...state,
+        notePreviewId: null,
         searchText: action.payload,
       };
     default:

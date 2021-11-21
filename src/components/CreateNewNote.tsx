@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-import { addNewNote, updateNote } from "../redux/actions/handleNoteList";
+import {
+  addNewNote,
+  setEditStatus,
+  updateNote,
+} from "../redux/actions/handleNoteList";
 import {
   setNewTitle,
   setNewNoteText,
@@ -34,6 +38,12 @@ const CreateNewNote: React.FC = () => {
       dispatch(addNewNote({ title, noteText }));
     }
     history.push("/");
+  };
+
+  const handleFormCancel = () => {
+    dispatch(setNewNoteText(""));
+    dispatch(setNewTitle(""));
+    dispatch(setEditStatus(false));
   };
 
   return (
@@ -74,7 +84,12 @@ const CreateNewNote: React.FC = () => {
         <button className="btn btn-primary" type="submit">
           Submit
         </button>
-        <Link to="/" className="btn btn-light ml-2" type="reset">
+        <Link
+          to="/"
+          className="btn btn-light ml-2"
+          type="reset"
+          onClick={handleFormCancel}
+        >
           Cancel
         </Link>
       </div>
